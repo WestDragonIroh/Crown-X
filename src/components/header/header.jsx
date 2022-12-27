@@ -16,6 +16,12 @@ export default function Header() {
         <NavLink className='option' to='/shop'>
             CONTACT
         </NavLink>
+        <NavLink className='option' to='/sign'>
+            SIGN IN
+        </NavLink>
+        <NavLink className='option' to='/sign'>
+            CART
+        </NavLink>
         </div>
     </div>
   )
