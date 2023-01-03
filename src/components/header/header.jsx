@@ -5,6 +5,7 @@ import './header.scss'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
 export default function Header({user}) {
+    // console.log('A   ', user);
   return (
     <div className='header'>
         <NavLink className='logo-container' to='/'>

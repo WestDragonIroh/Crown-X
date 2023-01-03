@@ -1,6 +1,6 @@
 import { initializeApp} from "firebase/app";
 import { getFirestore, getDoc, setDoc, doc, onSnapshot } from 'firebase/firestore'
-import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD8nkT1qzcRg8ZA3N04ez8MyfnVytWdA9g",
@@ -51,3 +51,4 @@ export const signInWithGoogle = () => {
 
 export const onsnapshot = onSnapshot;
 export const createuserWithEmailAndPassword = createUserWithEmailAndPassword;
+export const signinWithEmailAndPassword = signInWithEmailAndPassword;
