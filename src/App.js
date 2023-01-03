@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument, onsnapshot } from './firebase/firebase.utils';
 
 import './App.css';
 
@@ -14,11 +14,19 @@ function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      setUser(user)
-      console.log(user)
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        onsnapshot(userRef, (snapShot) => {
+          setUser(() => {return {id: snapShot.id, ...snapShot.data()}})
+        })
+      }
+      else {
+        setUser(userAuth)
+      }
     })
-  })
+  },[])
 
   return (
     <BrowserRouter>

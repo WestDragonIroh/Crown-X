@@ -1,6 +1,6 @@
 import { initializeApp} from "firebase/app";
-import { getFirestore } from 'firebase/firestore'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getFirestore, getDoc, setDoc, doc, onSnapshot } from 'firebase/firestore'
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD8nkT1qzcRg8ZA3N04ez8MyfnVytWdA9g",
@@ -20,18 +20,34 @@ export const firestore = getFirestore(app);
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  const userRef = doc(firestore, `users/${userAuth.uid}`);
+  const snapShot = await getDoc(userRef);
+
+  if (!snapShot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+    } catch (error) {
+      console.log('Error creating user: ', error.message);
+    }
+  }
+
+  return userRef;
+}
+
 export const signInWithGoogle = () => {
   signInWithPopup(auth, provider)
-    // .then((result) => { console.log(result)
-    //   const name = result.user.displayName;
-    //   const email = result.user.email;
-    //   const profilePic = result.user.photoURL;
-
-    //   localStorage.setItem("name", name);
-    //   localStorage.setItem("email", email);
-    //   localStorage.setItem("profilePic", profilePic);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
 };
+
+export const onsnapshot = onSnapshot;
+export const createuserWithEmailAndPassword = createUserWithEmailAndPassword;
