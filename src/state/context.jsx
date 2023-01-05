@@ -7,7 +7,8 @@ const AppContext = createContext();
 
 const inititialState = {
     user: null,
-    hidden: true
+    hidden: true,
+    cartItems: []
 };
 
 const AppProvider = ({ children }) => {
@@ -27,8 +28,16 @@ const AppProvider = ({ children }) => {
             type: 'TOGGLE_CART_HIDDEN'
         })
     };
+
+    const addItem = (item) => {
+        return dispatch({
+            type: 'ADD_ITEM',
+            payload: item
+        });
+    };
+
     return (
-        <AppContext.Provider value={{ ...state, setUser, toggleCartHidden}}>
+        <AppContext.Provider value={{ ...state, setUser, toggleCartHidden, addItem}}>
             {children}
         </AppContext.Provider>
     )

@@ -1,3 +1,5 @@
+import { addItemToCart } from "./cart_utils";
+
 const reducer = (state, action) => {
     switch (action.type){
         case 'SET_USER':
@@ -10,6 +12,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 hidden: !state.hidden
+            };
+        
+        case 'ADD_ITEM':
+            return {
+                ...state,
+                cartItems: addItemToCart(state.cartItems, action.payload)
             };
 
         default:
