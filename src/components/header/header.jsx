@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom'
 import { auth } from '../../firebase/firebase.utils'
 import './header.scss'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
+import { useGlobalContext } from '../../state/context'
 
-export default function Header({user}) {
-    // console.log('A   ', user);
+export default function Header() {
+  const { user } = useGlobalContext();
+//   console.log('A   ', user);
   return (
     <div className='header'>
         <NavLink className='logo-container' to='/'>
