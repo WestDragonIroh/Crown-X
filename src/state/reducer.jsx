@@ -5,6 +5,13 @@ const reducer = (state, action) => {
                 ...state,
                 user: action.payload.user
             };
+
+        case 'TOGGLE_CART_HIDDEN':
+            return {
+                ...state,
+                hidden: !state.hidden
+            };
+
         default:
             return state;
     }

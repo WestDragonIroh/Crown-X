@@ -6,7 +6,8 @@ import reducer from "./reducer";
 const AppContext = createContext();
 
 const inititialState = {
-    user: null
+    user: null,
+    hidden: true
 };
 
 const AppProvider = ({ children }) => {
@@ -21,8 +22,13 @@ const AppProvider = ({ children }) => {
         });
     },[dispatch]);
 
+    const toggleCartHidden = () => {
+        return dispatch({
+            type: 'TOGGLE_CART_HIDDEN'
+        })
+    };
     return (
-        <AppContext.Provider value={{ ...state, setUser}}>
+        <AppContext.Provider value={{ ...state, setUser, toggleCartHidden}}>
             {children}
         </AppContext.Provider>
     )

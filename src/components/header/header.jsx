@@ -4,9 +4,11 @@ import { auth } from '../../firebase/firebase.utils'
 import './header.scss'
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 import { useGlobalContext } from '../../state/context'
+import CartIcon from '../cart_icon/cart_icon'
+import CartDropdown from '../cart_dropdown/cart_dropdown'
 
 export default function Header() {
-  const { user } = useGlobalContext();
+  const { user, hidden } = useGlobalContext();
 //   console.log('A   ', user);
   return (
     <div className='header'>
@@ -30,10 +32,9 @@ export default function Header() {
                 SIGN IN
             </NavLink>
         }
-        <NavLink className='option' to='/sign'>
-            CART
-        </NavLink>
+        <CartIcon />
         </div>
+        { hidden? null : <CartDropdown />}
     </div>
   )
 }
