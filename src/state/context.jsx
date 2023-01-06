@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useReducer } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useReducer } from "react";
 import reducer from "./reducer";
 
 
@@ -11,8 +11,22 @@ const inititialState = {
     cartItems: []
 };
 
+
+
 const AppProvider = ({ children }) => {
+    useEffect(() => {
+        const data = window.localStorage.getItem('Crown_X_CartItems')
+        if (data) {inititialState.cartItems = JSON.parse(data)}
+        // console.log('Fetching data from local storage')
+    }, [])
+
     const [state, dispatch] = useReducer(reducer, inititialState);
+    
+    useEffect(() => {
+        window.localStorage.setItem('Crown_X_CartItems', JSON.stringify(state.cartItems))
+        // console.log('Updating data to local storage')
+    }, [state.cartItems])
+
 
     const setUser = useCallback( (user) => {
         return dispatch({
