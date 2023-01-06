@@ -36,8 +36,22 @@ const AppProvider = ({ children }) => {
         });
     };
 
+    const removeItem = (item) => {
+        return dispatch({
+            type: 'REMOVE_ITEM',
+            payload: item
+        });
+    };
+
+    const clearItemFromCart = (item) => {
+        return dispatch({
+            type: 'CLEAR_ITEM_FROM_CART',
+            payload: item
+        });
+    };
+
     return (
-        <AppContext.Provider value={{ ...state, setUser, toggleCartHidden, addItem}}>
+        <AppContext.Provider value={{ ...state, setUser, toggleCartHidden, addItem, removeItem, clearItemFromCart}}>
             {children}
         </AppContext.Provider>
     )

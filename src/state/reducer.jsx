@@ -1,4 +1,4 @@
-import { addItemToCart } from "./cart_utils";
+import { addItemToCart, removeItemFromCart } from "./cart_utils";
 
 const reducer = (state, action) => {
     switch (action.type){
@@ -18,6 +18,18 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
+            };
+
+        case 'REMOVE_ITEM':
+            return {
+                ...state,
+                cartItems: removeItemFromCart(state.cartItems, action.payload)
+            };
+        
+        case 'CLEAR_ITEM_FROM_CART':
+            return {
+                ...state,
+                cartItems: state.cartItems.filter(cartItem => cartItem.id !== action.payload.id)
             };
 
         default:
