@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useReducer } from "react";
 import reducer from "./reducer";
-
+import sections from "./data/section";
+import shopData from "./data/shopData";
 
 
 const AppContext = createContext();
@@ -8,7 +9,9 @@ const AppContext = createContext();
 const inititialState = {
     user: null,
     hidden: true,
-    cartItems: []
+    cartItems: [],
+    sections: sections,
+    shopData: shopData
 };
 
 
