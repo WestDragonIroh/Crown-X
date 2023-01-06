@@ -38,7 +38,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/shop' element={<Shop />} />
+        <Route path='/shop/*' element={<Shop />} />
         <Route path='/sign'  element={user ? <Navigate to='/' /> : <Sign />} />
         <Route path='/checkout' element={<Checkout />} />
       </Routes>
