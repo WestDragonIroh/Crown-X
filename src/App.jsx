@@ -9,6 +9,7 @@ import HomePage from './pages/homepage/homepage';
 import Shop from './pages/shop/shop';
 import Header from './components/header/header';
 import Sign from './pages/sign/sign';
+import Checkout from './pages/checkout/checkout';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
   const { user, setUser } = useGlobalContext();
 
   useEffect(() => {
-    // console.log('A')
+    // console.log('AB')
     auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -33,11 +34,13 @@ function App() {
 
   return (
     <BrowserRouter>
+    {/* {console.log('ohhh')} */}
       <Header />
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/shop' element={<Shop />} />
         <Route path='/sign'  element={user ? <Navigate to='/' /> : <Sign />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );
