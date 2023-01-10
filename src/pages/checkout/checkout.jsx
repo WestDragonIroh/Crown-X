@@ -3,6 +3,7 @@ import './checkout.scss'
 
 import { useGlobalContext } from '../../state/context'
 import CheckoutItem from '../../components/checkout_item/checkout_item'
+import StripeButton from '../../components/stripe_button/stripe_button'
 
 export default function Checkout() {
 
@@ -32,6 +33,12 @@ export default function Checkout() {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
         ))}
         <div className='total'>TOTAL: ${total}</div>
+        <div className='test-warning'>
+            *Please use the following test credit card for payments*
+            <br />
+            4242 4242 4242 4242 - Exp: 01/24 - CVV: 123
+        </div>
+        <StripeButton price={total} />
     </div>
   )
 }
