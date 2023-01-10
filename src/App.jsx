@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { /* BrowserRouter */ Routes, Route, Navigate, HashRouter } from 'react-router-dom';
 import { auth, createUserProfileDocument, onsnapshot } from './firebase/firebase.utils';
 
 import './App.css';
@@ -33,16 +33,18 @@ function App() {
   },[setUser])
 
   return (
-    <BrowserRouter>
-    {/* {console.log('ohhh')} */}
-      <Header />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/shop/*' element={<Shop />} />
-        <Route path='/sign'  element={user ? <Navigate to='/' /> : <Sign />} />
-        <Route path='/checkout' element={<Checkout />} />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+      <HashRouter>
+      {/* {console.log('ohhh')} */}
+        <Header />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/shop/*' element={<Shop />} />
+          <Route path='/sign'  element={user ? <Navigate to='/' /> : <Sign />} />
+          <Route path='/checkout' element={<Checkout />} />
+        </Routes>
+      </HashRouter>
+    // </BrowserRouter>
   );
 }
 
