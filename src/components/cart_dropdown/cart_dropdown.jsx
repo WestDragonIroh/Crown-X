@@ -1,32 +1,39 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useGlobalContext } from '../../state/context'
-import CartItem from '../cart_item/cart_item'
-import CustomButton from '../custom_button/custom_button'
-import './cart_dropdown.scss'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../state/context";
+import CartItem from "../cart_item/cart_item";
+// import CustomButton from "../custom_button/custom_button";
+// import './cart_dropdown.scss'
+
+import {
+  CartDropdownContainer,
+  CartDropdownButton,
+  EmptyMessageContainer,
+  CartItemsContainer,
+} from "./cart_dropdown_style";
 
 export default function CartDropdown() {
-
-  const { cartItems, toggleCartHidden } = useGlobalContext()
-  const navigate = useNavigate()
+  const { cartItems, toggleCartHidden } = useGlobalContext();
+  const navigate = useNavigate();
 
   return (
-    <div className='cart-dropdown'>
-        <div className='cart-items'>
-        { cartItems.length ? (
-          cartItems.map(cartItem => (
+    <CartDropdownContainer>
+      <CartItemsContainer>
+        {cartItems.length ? (
+          cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} item={cartItem} />
           ))
         ) : (
-          <span className='empty-message'>Your cart is empty</span>
+          <EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
         )}
-        </div>
-        <CustomButton onClick={() => {
-          navigate('/checkout');
-          toggleCartHidden()
-        }}> 
-          GO TO CHECKOUT
-        </CustomButton>
-    </div>
-  )
+      </CartItemsContainer>
+      <CartDropdownButton
+        onClick={() => {
+          navigate("/checkout");
+          toggleCartHidden();
+        }}>
+        GO TO CHECKOUT
+      </CartDropdownButton>
+    </CartDropdownContainer>
+  );
 }
