@@ -10,20 +10,12 @@ import { useParams } from "react-router-dom";
 import CollectionItem from "../../components/collection_item/collection_item";
 import { useGlobalContext } from "../../state/context";
 
-const Collection_ID = {
-  hats: 1,
-  sneakers: 2,
-  jackets: 3,
-  womens: 4,
-  mens: 5,
-};
+// const Collection_ID = {hats: 1, sneakers: 2, jackets: 3, womens: 4, mens: 5};
 
 export default function Collection() {
-  const { shopData } = useGlobalContext();
+  let { shopData } = useGlobalContext();
   const { collectionId } = useParams();
-  const collection = shopData.find(
-    (data) => data.id === Collection_ID[collectionId]
-  );
+  const collection = shopData ? shopData[collectionId] : null;
 
   return (
     <CollectionPageContainer>

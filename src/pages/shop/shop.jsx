@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import {
   collecTion,
@@ -9,8 +9,13 @@ import {
 import CollectionsOverview from "../../components/collections_overview/collections_overview";
 import Collection from "../collection/collection";
 import { useGlobalContext } from "../../state/context";
+import WithSpinner from "../../components/with_spinner/with_spinner";
+
+const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
+const CollectionWithSpinner = WithSpinner(Collection);
 
 export default function Shop() {
+  const [loading, setLoading] = useState(true);
   const { updateShopData } = useGlobalContext();
 
   useEffect(() => {
@@ -18,14 +23,21 @@ export default function Shop() {
     onsnapshot(collectionRef, async (snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       updateShopData(collectionsMap);
+      setLoading(false);
     });
   }, [updateShopData]);
 
   return (
     <div className="shop-page">
       <Routes>
-        <Route path="/" element={<CollectionsOverview />} />
-        <Route path="/:collectionId" element={<Collection />} />
+        <Route
+          path="/"
+          element={<CollectionsOverviewWithSpinner isLoading={loading} />}
+        />
+        <Route
+          path="/:collectionId"
+          element={<CollectionWithSpinner isLoading={loading} />}
+        />
       </Routes>
     </div>
   );

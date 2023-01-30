@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import reducer from "./reducer";
 import sections from "./data/section";
-import shopData from "./data/shopData";
+// import shopData from "./data/shopData";
 
 const AppContext = createContext();
 
@@ -16,8 +16,7 @@ const inititialState = {
   hidden: true,
   cartItems: [],
   sections: sections,
-  shopData: shopData,
-  shop: {},
+  shopData: null,
 };
 
 const AppProvider = ({ children }) => {

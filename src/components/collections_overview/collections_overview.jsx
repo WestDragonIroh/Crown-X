@@ -6,7 +6,8 @@ import CollectionPreview from "../collection_preview/collection_preview";
 import { CollectionsOverviewContainer } from "./collections_overview_style";
 
 export default function CollectionsOverview() {
-  const { shopData } = useGlobalContext();
+  let { shopData } = useGlobalContext();
+  shopData = shopData ? Object.keys(shopData).map((key) => shopData[key]) : [];
 
   return (
     <CollectionsOverviewContainer>

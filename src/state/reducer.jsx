@@ -37,7 +37,7 @@ const reducer = (state, action) => {
     case "UPDATE_SHOPDATA":
       return {
         ...state,
-        shop: action.payload,
+        shopData: action.payload,
       };
 
     default:
