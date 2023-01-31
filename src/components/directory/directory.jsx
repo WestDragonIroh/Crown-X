@@ -4,7 +4,7 @@ import React from "react";
 import { DirectoryMenuContainer } from "./directory_style";
 
 import MenuItem from "../menu_item/menu_item";
-import { useGlobalContext } from "../../state/context";
+import { useGlobalContext } from "../../state/global/context";
 
 const Directory = () => {
   const { sections } = useGlobalContext();

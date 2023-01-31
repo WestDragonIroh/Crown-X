@@ -2,7 +2,7 @@ import React from "react";
 // import "./cart_icon.scss";
 
 // import { ReactComponent as ShoppingIcon }  from '../../assets/bag.svg'
-import { useGlobalContext } from "../../state/context";
+import { useGlobalContext } from "../../state/global/context";
 
 import {
   CartContainer,

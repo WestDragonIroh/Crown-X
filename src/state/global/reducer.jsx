@@ -34,12 +34,6 @@ const reducer = (state, action) => {
         ),
       };
 
-    case "UPDATE_SHOPDATA":
-      return {
-        ...state,
-        shopData: action.payload,
-      };
-
     default:
       return state;
   }

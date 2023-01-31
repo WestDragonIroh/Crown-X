@@ -9,7 +9,7 @@ import {
   RemoveButtonContainer,
 } from "./checkout_item_style";
 
-import { useGlobalContext } from "../../state/context";
+import { useGlobalContext } from "../../state/global/context";
 
 export default function CheckoutItem({ cartItem }) {
   const { addItem, removeItem, clearItemFromCart } = useGlobalContext();

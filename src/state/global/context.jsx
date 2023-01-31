@@ -6,7 +6,7 @@ import React, {
   useReducer,
 } from "react";
 import reducer from "./reducer";
-import sections from "./data/section";
+import sections from "../data/section";
 // import shopData from "./data/shopData";
 
 const AppContext = createContext();
@@ -16,7 +16,6 @@ const inititialState = {
   hidden: true,
   cartItems: [],
   sections: sections,
-  shopData: null,
 };
 
 const AppProvider = ({ children }) => {
@@ -77,16 +76,6 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const updateShopData = useCallback(
-    (collectionsMap) => {
-      return dispatch({
-        type: "UPDATE_SHOPDATA",
-        payload: collectionsMap,
-      });
-    },
-    [dispatch]
-  );
-
   return (
     <AppContext.Provider
       value={{
@@ -96,7 +85,6 @@ const AppProvider = ({ children }) => {
         addItem,
         removeItem,
         clearItemFromCart,
-        updateShopData,
       }}>
       {children}
     </AppContext.Provider>

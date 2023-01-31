@@ -8,7 +8,7 @@ import {
   WarningContainer,
 } from "./checkout_style";
 
-import { useGlobalContext } from "../../state/context";
+import { useGlobalContext } from "../../state/global/context";
 import CheckoutItem from "../../components/checkout_item/checkout_item";
 import StripeButton from "../../components/stripe_button/stripe_button";
 

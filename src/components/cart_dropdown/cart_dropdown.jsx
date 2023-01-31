@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../../state/context";
+import { useGlobalContext } from "../../state/global/context";
 import CartItem from "../cart_item/cart_item";
 // import CustomButton from "../custom_button/custom_button";
 // import './cart_dropdown.scss'

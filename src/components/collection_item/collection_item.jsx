@@ -1,5 +1,5 @@
 import React from "react";
-import { useGlobalContext } from "../../state/context";
+import { useGlobalContext } from "../../state/global/context";
 // import CustomButton from "../custom_button/custom_button";
 // import './collection_item.scss'
 

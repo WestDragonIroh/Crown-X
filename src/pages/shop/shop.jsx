@@ -8,7 +8,7 @@ import {
 } from "../../firebase/firebase.utils";
 import CollectionsOverview from "../../components/collections_overview/collections_overview";
 import Collection from "../collection/collection";
-import { useGlobalContext } from "../../state/context";
+import { useShopContext } from "../../state/shop/context_shop";
 import WithSpinner from "../../components/with_spinner/with_spinner";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
@@ -16,7 +16,7 @@ const CollectionWithSpinner = WithSpinner(Collection);
 
 export default function Shop() {
   const [loading, setLoading] = useState(true);
-  const { updateShopData } = useGlobalContext();
+  const { updateShopData } = useShopContext();
 
   useEffect(() => {
     const collectionRef = collecTion(firestore, "shopData");
@@ -25,7 +25,7 @@ export default function Shop() {
       updateShopData(collectionsMap);
       setLoading(false);
     });
-  }, [updateShopData]);
+  }, [updateShopData, loading]);
 
   return (
     <div className="shop-page">

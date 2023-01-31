@@ -13,7 +13,8 @@ import {
 
 import "./App.css";
 
-import { useGlobalContext } from "./state/context";
+import { ShopProvider } from "./state/shop/context_shop";
+import { useGlobalContext } from "./state/global/context";
 import HomePage from "./pages/homepage/homepage";
 import Shop from "./pages/shop/shop";
 import Header from "./components/header/header";
@@ -46,7 +47,14 @@ function App() {
       <Header />
       <Routes>
         <Route index path="/" element={<HomePage />} />
-        <Route path="/shop/*" element={<Shop />} />
+        <Route
+          path="/shop/*"
+          element={
+            <ShopProvider>
+              <Shop />
+            </ShopProvider>
+          }
+        />
         <Route path="/sign" element={user ? <Navigate to="/" /> : <Sign />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
